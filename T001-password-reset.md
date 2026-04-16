@@ -20,7 +20,7 @@ User **Jasmine Rodgers** (`jasminerodgers@lab.com`) was unable to log into WS-01
 
 > "Hi, I am unable to sign in to my computer with my usual password. It says my credentials are incorrect. I may have entered it wrong a few times. Can someone help me reset my password so I can log back in?"
 
-![User unable to log in on WS-01](assets/WS01_user_unable_to_log_in.png)
+![User unable to log in on WS-01](assets/WS01-user-unable-to-log-in.png)
 
 ---
 
@@ -34,9 +34,9 @@ Since the user could not log into WS-01, the ticket was submitted from DC-01 on 
 - Help Topic: Report a Problem / Access Issue
 - Summary: I can't log in to my account
 
-![Ticket submission form](assets/helpdesk_technician_submits_user_ticket1.png)
-![Ticket submission — details](assets/helpdesk_technician_submits_user_ticket2.png)
-![Ticket created confirmation](assets/helpdesk_technician_ticket-visible-staff-panel.png)
+![Ticket submission form](assets/helpdesk-technician-submits-user-ticket1.png)
+![Ticket submission — details](assets/helpdesk-technician-submits-user-ticket2.png)
+![Ticket created confirmation](assets/helpdesk-technician-ticket-visible-staff-panel.png)
 
 ---
 
@@ -50,7 +50,7 @@ Ticket located in the osTicket Staff Control Panel under Open Tickets.
 
 **Reason for downgrade:** Single user affected, no system-wide impact.
 
-![Ticket assigned and viewed](assets/helpdesk_technician_user_ticket_assigned_and_viewed.png)
+![Ticket assigned and viewed](assets/helpdesk-technician-user-ticket-assigned-and-viewed.png)
 
 ---
 
@@ -60,7 +60,7 @@ An internal note was added before taking action to document analyst thinking and
 
 > "User unable to authenticate to WS01 using domain credentials. Multiple failed login attempts reported. Proceeding with the Active Directory password reset and enforcing the password change at the next logon."
 
-![Ticket thread with internal note](assets/helpdesk_technician_user_ticketthread1.png)
+![Ticket thread with internal note](assets/helpdesk-technician-user-ticketthread1.png)
 
 ---
 
@@ -74,7 +74,7 @@ On DC-01, opened **Active Directory Users and Computers (ADUC)**.
 - Checked: **User must change password at next logon**
 - Checked: **Unlock the user's account**
 
-![Active Directory password reset](assets/helpdesk_technician_user_ticket_password_reset_completed.png)
+![Active Directory password reset](assets/helpdesk-technician-user-ticket-password-reset-completed.png)
 
 ---
 
@@ -88,7 +88,7 @@ An internal note was added to document the credential handling:
 
 > "Temporary password communicated to user via secure method."
 
-![User response sent](assets/helpdesk_technician_user_ticket_responded_to.png)
+![User response sent](assets/helpdesk-technician-user-ticket-responded-to.png)
 
 ---
 
@@ -102,7 +102,7 @@ Internal note added:
 
 Ticket status set to **Closed**.
 
-![Ticket thread closed](assets/helpdesk_technician_user_ticketthread2.png)
+![Ticket thread closed](assets/helpdesk-technician-user-ticketthread2.png)
 
 ---
 
