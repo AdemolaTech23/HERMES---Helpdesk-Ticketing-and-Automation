@@ -20,7 +20,7 @@ User **Jasmine Rodgers** (`jasminerodgers@lab.com`) was unable to log into WS-01
 
 > "Hi, I am unable to sign in to my computer with my usual password. It says my credentials are incorrect. I may have entered it wrong a few times. Can someone help me reset my password so I can log back in?"
 
-![User unable to log in on WS-01](assets/WS01-user-unable-to-log-in.png)
+![User unable to log in on WS-01] <img width="1009" height="556" alt="image" src="https://github.com/user-attachments/assets/9b535621-b189-4e81-9ccf-eb912954f30f" />
 
 ---
 
@@ -34,9 +34,12 @@ Since the user could not log into WS-01, the ticket was submitted from DC-01 on 
 - Help Topic: Report a Problem / Access Issue
 - Summary: I can't log in to my account
 
-![Ticket submission form](assets/helpdesk-technician-submits-user-ticket1.png)
-![Ticket submission — details](assets/helpdesk-technician-submits-user-ticket2.png)
-![Ticket created confirmation](assets/helpdesk-technician-ticket-visible-staff-panel.png)
+![Ticket submission form] <img width="898" height="539" alt="image" src="https://github.com/user-attachments/assets/079194f2-2485-461e-a5b4-798a6ade90d0" />
+
+![Ticket submission — details] <img width="865" height="537" alt="image" src="https://github.com/user-attachments/assets/4a7005e5-a4c0-4857-9cf9-07aaff885bbc" />
+
+![Ticket created confirmation] <img width="897" height="344" alt="image" src="https://github.com/user-attachments/assets/8b3f5d7c-50c0-4375-b7fe-0d63bf47b766" />
+
 
 ---
 
@@ -50,9 +53,8 @@ Ticket located in the osTicket Staff Control Panel under Open Tickets.
 
 **Reason for downgrade:** Single user affected, no system-wide impact.
 
-![Ticket assigned and viewed](assets/helpdesk-technician-user-ticket-assigned-and-viewed.png)
+![Ticket assigned and viewed] <img width="1027" height="561" alt="image" src="https://github.com/user-attachments/assets/e94806e6-5b3e-416d-a338-ca17bf3035fa" />
 
----
 
 ## Step 3 — Internal Analysis
 
@@ -60,7 +62,7 @@ An internal note was added before taking action to document analyst thinking and
 
 > "User unable to authenticate to WS01 using domain credentials. Multiple failed login attempts reported. Proceeding with the Active Directory password reset and enforcing the password change at the next logon."
 
-![Ticket thread with internal note](assets/helpdesk-technician-user-ticketthread1.png)
+![Ticket thread with internal note]  <img width="1042" height="621" alt="image" src="https://github.com/user-attachments/assets/a0a7aab1-abf5-4444-8a7b-a56042f8fdb5" />
 
 ---
 
@@ -74,7 +76,8 @@ On DC-01, opened **Active Directory Users and Computers (ADUC)**.
 - Checked: **User must change password at next logon**
 - Checked: **Unlock the user's account**
 
-![Active Directory password reset](assets/helpdesk-technician-user-ticket-password-reset-completed.png)
+![Active Directory password reset]  <img width="686" height="453" alt="image" src="https://github.com/user-attachments/assets/b146f408-cd7f-4b88-8d93-811a11ecfda9" />
+
 
 ---
 
@@ -88,7 +91,7 @@ An internal note was added to document the credential handling:
 
 > "Temporary password communicated to user via secure method."
 
-![User response sent](assets/helpdesk-technician-user-ticket-responded-to.png)
+![User response sent]  <img width="1028" height="595" alt="image" src="https://github.com/user-attachments/assets/d969f100-7d2d-4fa0-b98b-4aa225be0ced" />
 
 ---
 
@@ -102,7 +105,7 @@ Internal note added:
 
 Ticket status set to **Closed**.
 
-![Ticket thread closed](assets/helpdesk-technician-user-ticketthread2.png)
+![Ticket thread closed] <img width="1036" height="623" alt="image" src="https://github.com/user-attachments/assets/edb93634-b817-48fb-98db-df0d47339052" />
 
 ---
 
