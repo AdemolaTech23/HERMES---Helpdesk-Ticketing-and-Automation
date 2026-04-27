@@ -144,14 +144,19 @@ foreach ($user in $users) {
 }
 ```
 
-![Bulk password reset — all four manager accounts updated](tickets/assets/Users-allDept_password-reset.png)
+![Bulk password reset — all four manager accounts updated] <img width="798" height="375" alt="image" src="https://github.com/user-attachments/assets/4be38f01-d488-4fb9-b7a5-153a90b48479" />
+
 
 **ADUC verification — each manager in their correct department OU:**
 
-![ADUC — Finance OU showing Katherine Stetson](tickets/assets/Users-finance-AD-GUI.png)
-![ADUC — HR OU showing Sandra Mills](tickets/assets/Users-HR-AD-GUI.png)
-![ADUC — IT OU showing Paul Atreides](tickets/assets/Users-IT-AD-GUI.png)
-![ADUC — Sales OU showing Anakin Skywalker](tickets/assets/Users-IT-Sales-GUI.png)
+![ADUC — Finance OU showing Katherine Stetson] <img width="749" height="182" alt="image" src="https://github.com/user-attachments/assets/37eb9f11-cd0b-428f-8c34-15df49c2396c" />
+
+![ADUC — HR OU showing Sandra Mills] <img width="752" height="219" alt="image" src="https://github.com/user-attachments/assets/6dd33c0d-af1d-418c-b812-2b94d490991d" />
+
+![ADUC — IT OU showing Paul Atreides] <img width="749" height="279" alt="image" src="https://github.com/user-attachments/assets/82793bf4-7409-4b1d-ab92-07e76ab414fa" />
+
+![ADUC — Sales OU showing Anakin Skywalker] <img width="691" height="334" alt="image" src="https://github.com/user-attachments/assets/7ef3543e-9488-455e-bbcb-2eca2ee737ef" />
+
 
 Domain password policy confirmed via PowerShell:
 
@@ -159,7 +164,8 @@ Domain password policy confirmed via PowerShell:
 Get-ADDefaultDomainPasswordPolicy
 ```
 
-![Domain password policy — 14 character minimum, complexity enabled, lockout threshold 3](tickets/assets/Screenshot_2026-04-22_092725.png)
+![Domain password policy — 14 character minimum, complexity enabled, lockout threshold 3] <img width="697" height="291" alt="image" src="https://github.com/user-attachments/assets/f83a931b-41f8-4872-b160-d6072cf87e87" />
+
 
 ---
 
