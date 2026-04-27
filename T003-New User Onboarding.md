@@ -86,11 +86,15 @@ lab.local
 
 Finance OU already existed from earlier lab work and was skipped. IT, HR, and Sales OUs were created fresh with their Users sub-OUs.
 
-![New-OUStructure script — header and domain root](tickets/assets/helpdesk-NewOusCreation-Script_output1.png)
-![New-OUStructure script — Departments OU already exists, skipping](tickets/assets/helpdesk-NewOusCreation-Script_output12.png)
-![New-OUStructure script — IT, HR, Sales OUs created](tickets/assets/helpdesk-NewOusCreation-Script_output3.png)
-![New-OUStructure script — complete](tickets/assets/helpdesk-NewOusCreation-Script_output4.png)
-![ADUC — all four department OUs verified](tickets/assets/helpdesk-NewOusCreation-Script_in_AD.png)
+![New-OUStructure script — header and domain root] <img width="954" height="479" alt="image" src="https://github.com/user-attachments/assets/fae0fd89-46f6-4712-8fce-abe30b1b4b48" />
+
+![New-OUStructure script — Departments OU already exists, skipping] <img width="958" height="485" alt="image" src="https://github.com/user-attachments/assets/6dbee72b-e2dc-45ed-ba1b-37794ee88e50" />
+
+![New-OUStructure script — IT, HR, Sales OUs created] <img width="961" height="482" alt="image" src="https://github.com/user-attachments/assets/89326208-535b-495d-8aac-b7c0b04f406e" />
+
+![New-OUStructure script — complete] <img width="903" height="398" alt="image" src="https://github.com/user-attachments/assets/a1cf2345-574b-48eb-ae1e-216ed8aa70f2" />
+
+![ADUC — all four department OUs verified] <img width="662" height="299" alt="image" src="https://github.com/user-attachments/assets/8a3196cf-71b5-49d8-b027-d7a2eb9211ba" />
 
 ---
 
