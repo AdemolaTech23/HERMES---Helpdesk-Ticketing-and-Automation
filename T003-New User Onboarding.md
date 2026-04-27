@@ -323,13 +323,65 @@ After validating both logins the ticket was updated with resolution notes. Sandr
 ![Ticket closed — Sandra confirms both users logged in successfully] <img width="973" height="734" alt="image" src="https://github.com/user-attachments/assets/3053f4fc-30b5-4806-8d6d-ebc029b13a01" />
 
 ---
-
+ 
 ### T003-C — IT
+ 
+**Submitted by:** Paul Atreides (`paul.atreides@lab.local`)
+**New hires:** Michael Cabrera, Nazeer England, Olivia Fowler
+**Script:** `New-ITUser.ps1`
+ 
+Paul submitted Ticket #986055 via the osTicket client portal requesting domain accounts for three incoming IT staff members. IT users receive an additional group assignment beyond the standard department script — all IT staff are added to `Helpdesk-Admins`, granting delegated AD control across all department OUs without Domain Admin rights.
+ 
+![Ticket #986055 — Paul's submission and ticket details] <img width="833" height="580" alt="image" src="https://github.com/user-attachments/assets/2f7785a1-5599-41be-8850-7b0d5590bda4" />
 
-*Pending.*
+**Script run — Michael Cabrera:**
+ 
+```powershell
+.\New-ITUser.ps1 -FirstName "Michael" -LastName "Cabrera" -JobTitle "IT Support Specialist"
+```
+ 
+![New-ITUser.ps1 — michael.cabrera created, IT-Users and Helpdesk-Admins assigned] <img width="707" height="267" alt="image" src="https://github.com/user-attachments/assets/24c42112-abf3-4a83-88b4-58a2e17f25a3" />
 
+ 
+**Script run — Nazeer England:**
+ 
+```powershell
+.\New-ITUser.ps1 -FirstName "Nazeer" -LastName "England" -JobTitle "Systems Technician"
+```
+ 
+![New-ITUser.ps1 — nazeer.england created, IT-Users and Helpdesk-Admins assigned] <img width="689" height="264" alt="image" src="https://github.com/user-attachments/assets/e72332f7-d9f7-4944-a50b-231e9c4c0164" />
+
+ 
+**Script run — Olivia Fowler:**
+ 
+```powershell
+.\New-ITUser.ps1 -FirstName "Olivia" -LastName "Fowler" -JobTitle "Help Desk Technician"
+```
+ 
+![New-ITUser.ps1 — olivia.fowler created, IT-Users and Helpdesk-Admins assigned] <img width="639" height="263" alt="image" src="https://github.com/user-attachments/assets/7b51d2d6-1565-446a-98fe-fc2385dc8557" />
+
+ 
+Each script output confirms group membership as `Domain Users, IT-Users, Helpdesk-Admins` — verifying both assignments were applied automatically without manual intervention.
+ 
+**ADUC verification — all IT users confirmed:**
+ 
+![ADUC — IT OU showing all users, IT-Users and Helpdesk-Admins security groups] <img width="729" height="247" alt="image" src="https://github.com/user-attachments/assets/cc2e10e0-1b74-4e6a-a32a-843a28b5b0d6" />
+
+ 
+**WS-01 login validation:**
+ 
+Login screenshots were omitted for IT users — the pattern was established during Finance and HR onboarding. Group membership confirmation in the script output (`IT-Users, Helpdesk-Admins`) serves as the primary verification for access assignment.
+ 
+**Ticket thread and closure:**
+ 
+After account creation and AD verification the ticket was updated with resolution notes. Paul confirmed all three users were able to log in successfully. Ticket closed by Ademola Durodola.
+ 
+![Ticket thread — agent notes, accounts created with Helpdesk-Admins access noted] <img width="968" height="800" alt="image" src="https://github.com/user-attachments/assets/567ef0a4-5962-41cf-9d4d-04ccf9c05c49" />
+
+![Ticket closed — Paul confirms all three users logged in successfully] <img width="960" height="545" alt="image" src="https://github.com/user-attachments/assets/a95b2988-60dc-48ed-9302-4015f82ef722" />
+
+ 
 ---
-
 ### T003-D — Sales
 
 *Pending.*
