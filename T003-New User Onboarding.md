@@ -4,7 +4,7 @@
 
 | Field | Details |
 |---|---|
-| Date | 2026-04-16 |
+| Date | 2026-04-25 |
 | Submitted via | osTicket (web portal) |
 | Priority | Normal |
 | Status | In Progress |
@@ -15,17 +15,55 @@
 
 ## Overview
 
-New user onboarding is one of the most common Tier 1 helpdesk tasks. A department manager submits a ticket requesting a domain account for a newly hired employee. The technician creates the account in Active Directory, places it in the correct department OU, sets a temporary password, and confirms access before closing the ticket.
+New user onboarding is one of the most common Tier 1 helpdesk tasks. A department manager submits a ticket requesting domain accounts for newly hired employees. The technician creates the accounts in Active Directory, places them in the correct department OU, assigns them to the appropriate security group, sets a temporary password, and confirms access before closing the ticket.
 
-This document covers the full onboarding workflow including the AD environment setup that makes it possible.
+This document covers the full onboarding workflow across all four departments — Finance, HR, IT, and Sales — including the AD environment setup required before any user accounts could be created.
+
+The lab follows a **least privilege model**: permissions are never assigned directly to users. Instead, users are placed in department security groups, and those groups control access to network shares and AD resources. A new user inherits exactly what their role requires — nothing more.
+
+---
+
+## AD Environment — Full User Roster
+
+| Name | Username | Department | Title | Role Level |
+|---|---|---|---|---|
+| Katherine Stetson | katherine.stetson | Finance | Finance Manager | Manager |
+| Lauren Esbrand | lauren.esbrand | Finance | Finance Analyst | Staff |
+| Eve Saunders | eve.saunders | Finance | Accounts Coordinator | Staff |
+| Sandra Mills | sandra.mills | HR | HR Manager | Manager |
+| Adrianna Sita | adrianna.sita | HR | HR Generalist | Staff |
+| Jenaiah Morris | jenaiah.morris | HR | Recruitment Coordinator | Staff |
+| Paul Atreides | paul.atreides | IT | IT Manager | Manager + Helpdesk |
+| Michael Cabrera | michael.cabrera | IT | IT Support Specialist | Staff + Helpdesk |
+| Nazeer England | nazeer.england | IT | Systems Technician | Staff + Helpdesk |
+| Olivia Fowler | olivia.fowler | IT | Help Desk Technician | Staff + Helpdesk |
+| Anakin Skywalker | anakin.skywalker | Sales | Sales Manager | Manager |
+| Khoran Gomez | khoran.gomez | Sales | Sales Associate | Staff |
+| Camryn Tapaia | camryn.tapaia | Sales | Sales Coordinator | Staff |
+| Laren Johnson | laren.johnson | Sales | Account Executive | Staff |
+| Catherine Krol | catherine.krol | Sales | Sales Analyst | Staff |
+| Jasmine Rodgers | jasmine.rodgers | Finance | Finance Analyst | Staff (existing) |
+
+---
+
+## Security Groups and Access Model
+
+| Group | Members | Access Granted |
+|---|---|---|
+| `Finance-Users` | All Finance users | Read/Write — `\\DC-01\Shares\Finance` |
+| `HR-Users` | All HR users | Read/Write — `\\DC-01\Shares\HR` |
+| `IT-Users` | All IT users | Read/Write — `\\DC-01\Shares\IT` |
+| `Sales-Users` | All Sales users | Read/Write — `\\DC-01\Shares\Sales` |
+| `Dept-Managers` | All four department managers | Scoped AD permissions over their own department OU |
+| `Helpdesk-Admins` | Paul Atreides, Michael Cabrera, Nazeer England, Olivia Fowler | Delegated AD control across all OUs + Read on all shares |
+
+No user has local admin on any machine. No user is assigned permissions directly — all access flows through group membership.
 
 ---
 
 ## Prerequisites — Part 1: OU Structure
 
-Before any user accounts can be created in the correct department, a standardised Organisational Unit structure was provisioned on DC-01 using `New-OUStructure.ps1`.
-
-**Script run on DC-01:**
+Before any user accounts could be created, a standardised Organisational Unit structure was provisioned on DC-01 using `New-OUStructure.ps1`.
 
 ```powershell
 .\New-OUStructure.ps1
@@ -38,37 +76,27 @@ lab.local
 └── Departments
     ├── Finance
     │   └── Users
-    ├── IT
-    │   └── Users
     ├── HR
+    │   └── Users
+    ├── IT
     │   └── Users
     └── Sales
         └── Users
 ```
 
-Script output confirmed Finance OU already existed and was skipped. IT, HR, and Sales OUs were created fresh with their Users sub-OUs.
+Finance OU already existed from earlier lab work and was skipped. IT, HR, and Sales OUs were created fresh with their Users sub-OUs.
 
-![New-OUStructure script output — start] <img width="954" height="479" alt="image" src="https://github.com/user-attachments/assets/0bd2cceb-b74a-4e84-a165-a0549640bc37" />
-
-
-
-![New-OUStructure script output — departments created]  <img width="961" height="482" alt="image" src="https://github.com/user-attachments/assets/6d653838-a1be-4bf5-ae44-e21db6142cb9" />
-
-
-![New-OUStructure script output — complete] <img width="903" height="398" alt="image" src="https://github.com/user-attachments/assets/6c7ee02c-8f83-44ab-abcf-82a400fae758" />
-
-
-
-![OU structure verified in ADUC]  <img width="662" height="299" alt="image" src="https://github.com/user-attachments/assets/4dcddf7c-56e1-4cf8-aea3-cc89d71e7d25" />
-
+![New-OUStructure script — header and domain root](tickets/assets/helpdesk-NewOusCreation-Script_output1.png)
+![New-OUStructure script — Departments OU already exists, skipping](tickets/assets/helpdesk-NewOusCreation-Script_output12.png)
+![New-OUStructure script — IT, HR, Sales OUs created](tickets/assets/helpdesk-NewOusCreation-Script_output3.png)
+![New-OUStructure script — complete](tickets/assets/helpdesk-NewOusCreation-Script_output4.png)
+![ADUC — all four department OUs verified](tickets/assets/helpdesk-NewOusCreation-Script_in_AD.png)
 
 ---
 
 ## Prerequisites — Part 2: Department Leaders
 
-With the OU structure in place, department head accounts were created using `New-DeptLeaders.ps1`. These accounts represent the managers who submit onboarding requests via osTicket.
-
-**Script run on DC-01:**
+With the OU structure in place, department manager accounts were created using `New-DeptLeaders.ps1`. These are the accounts that submit onboarding tickets via osTicket.
 
 ```powershell
 .\New-DeptLeaders.ps1
@@ -83,38 +111,20 @@ With the OU structure in place, department head accounts were created using `New
 | Paul Atreides | IT Manager | IT | paul.atreides |
 | Anakin Skywalker | Sales Manager | Sales | anakin.skywalker |
 
-**Note:** The first run failed with a password complexity error — the initial temp password `TempPass123!` did not meet the domain minimum length of 14 characters. The script was corrected and rerun with `TempPassword123!` (16 characters), which met the policy.
+The first run failed — the initial temp password `TempPass123!` did not meet the domain 14 character minimum. All four accounts returned a password complexity error. The script was corrected to use `TempPassword123!` (16 characters) and rerun successfully.
 
-![New-DeptLeaders script — first run start] <img width="957" height="446" alt="image" src="https://github.com/user-attachments/assets/e13c852d-0572-4bff-96ef-6f7516d04252" />
+![New-DeptLeaders.ps1 — first run, script header](tickets/assets/New-Deptleaders-Script-run1.png)
+![New-DeptLeaders.ps1 — first run, loop and logic](tickets/assets/New-Deptleaders-Script-run2.png)
+![New-DeptLeaders.ps1 — first run, OU verification and account creation logic](tickets/assets/New-Deptleaders-Script-run3.png)
+![New-DeptLeaders.ps1 — first run, password error on all four accounts](tickets/assets/New-Deptleaders-Script-run4_PW_error__.png)
+![New-DeptLeaders.ps1 — second run, script header with corrected password](tickets/assets/New-Deptleaders-Script-run5.png)
+![New-DeptLeaders.ps1 — second run, loop and account creation logic](tickets/assets/New-Deptleaders-Script-run6.png)
+![New-DeptLeaders.ps1 — second run, all accounts created successfully](tickets/assets/New-Deptleaders-Script-run7.png)
 
-
-![New-DeptLeaders script — password error on first run]  <img width="952" height="483" alt="image" src="https://github.com/user-attachments/assets/603757e7-332b-467c-952c-f5d1842ad897" />
-
-
-![New-DeptLeaders script — second run]  <img width="963" height="473" alt="image" src="https://github.com/user-attachments/assets/2757ee8f-b761-42d1-9c44-d4263d9f5b27" />
-
-![New-DeptLeaders script — accounts created]  <img width="954" height="509" alt="image" src="https://github.com/user-attachments/assets/18d765d4-0c4f-4c2a-b03f-21e2d408329d" />
-
-![New-DeptLeaders script — summary output]  <img width="932" height="481" alt="image" src="https://github.com/user-attachments/assets/88f4b351-8126-46b3-a1a8-554a3d8d01a0" />
-
-**ADUC verification — all four leaders in correct OUs:**
-
-![Finance OU — Katherine Stetson] <img width="749" height="182" alt="image" src="https://github.com/user-attachments/assets/627d7be8-abcd-4551-8c7b-13d2cfd748a7" />
-
-![HR OU — Sandra Mills]  <img width="752" height="219" alt="image" src="https://github.com/user-attachments/assets/07bdbb64-99b7-494d-8157-d6ca0bca22e1" />
-
-![IT OU — Paul Atreides]  <img width="749" height="279" alt="image" src="https://github.com/user-attachments/assets/35e3876d-ecd9-473e-956e-93be59a7f098" />
-
-![Sales OU — Anakin Skywalker] <img width="691" height="334" alt="image" src="https://github.com/user-attachments/assets/8696ed8d-e30c-4b3d-89b5-b8fdef37a285" />
-
-
-**Passwords reset to meet domain policy:**
-
-After the first run failure, all four accounts had their passwords reset via a bulk PowerShell command to ensure compliance with the 14 character minimum:
+After the first run failure, all four accounts were bulk-updated via inline PowerShell to ensure password compliance and force a change at first logon:
 
 ```powershell
 $newPassword = ConvertTo-SecureString "TempPassword123!" -AsPlainText -Force
-
 $users = @("katherine.stetson", "sandra.mills", "paul.atreides", "anakin.skywalker")
 
 foreach ($user in $users) {
@@ -124,19 +134,134 @@ foreach ($user in $users) {
 }
 ```
 
-![Bulk password reset output] 
+![Bulk password reset — all four manager accounts updated](tickets/assets/Users-allDept_password-reset.png)
 
-<img width="697" height="291" alt="image" src="https://github.com/user-attachments/assets/4df58842-eec1-43c9-83a8-a42dd0bffa77" />
+**ADUC verification — each manager in their correct department OU:**
 
-<img width="798" height="375" alt="image" src="https://github.com/user-attachments/assets/0db1c340-2bcd-4f2d-a6cb-360161cc45c0" />
+![ADUC — Finance OU showing Katherine Stetson](tickets/assets/Users-finance-AD-GUI.png)
+![ADUC — HR OU showing Sandra Mills](tickets/assets/Users-HR-AD-GUI.png)
+![ADUC — IT OU showing Paul Atreides](tickets/assets/Users-IT-AD-GUI.png)
+![ADUC — Sales OU showing Anakin Skywalker](tickets/assets/Users-IT-Sales-GUI.png)
+
+Domain password policy confirmed via PowerShell:
+
+```powershell
+Get-ADDefaultDomainPasswordPolicy
+```
+
+![Domain password policy — 14 character minimum, complexity enabled, lockout threshold 3](tickets/assets/Screenshot_2026-04-22_092725.png)
 
 ---
 
-## Ticket Simulation
+## Prerequisites — Part 3: Security Groups
 
-Each department manager will submit a separate osTicket request for their new employee. The technician handles all four using department-specific PowerShell scripts.
+With the OU structure and manager accounts in place, all department security groups were created using `New-SecurityGroups.ps1`. This script creates the six groups, places each in its correct OU, and immediately assigns existing users to their appropriate groups.
 
-*Ticket simulations and script runs in progress — documentation to follow.*
+```powershell
+.\New-SecurityGroups.ps1
+```
+
+**Groups created:**
+
+| Group | OU Placement | Purpose |
+|---|---|---|
+| `Finance-Users` | Finance\Users | Controls access to Finance share |
+| `HR-Users` | HR\Users | Controls access to HR share |
+| `IT-Users` | IT\Users | Controls access to IT share |
+| `Sales-Users` | Sales\Users | Controls access to Sales share |
+| `Dept-Managers` | Departments | Scoped AD delegation for managers |
+| `Helpdesk-Admins` | IT\Users | Full department OU delegation for IT staff |
+
+All six groups created successfully. Zero skipped, zero failed. Existing users `katherine.stetson`, `jasmine.rodgers`, and `paul.atreides` were automatically added to their respective groups by the script.
+
+![New-SecurityGroups.ps1 — 6 groups created, 0 failed](tickets/assets/Securitygroupsetupcompleted.png)
+
+---
+
+## Prerequisites — Part 4: osTicket User Accounts
+
+Each department manager was registered as an end user in osTicket so they could submit tickets via the client portal. New employees have no existing system access and cannot self-serve — the manager submits on their behalf.
+
+| Name | Email | osTicket Role |
+|---|---|---|
+| Katherine Stetson | katherine.stetson@lab.local | End User |
+| Sandra Mills | sandra.mills@lab.local | End User |
+| Paul Atreides | paul.atreides@lab.local | End User |
+| Anakin Skywalker | anakin.skywalker@lab.local | End User |
+
+![osTicket User Directory — all four managers registered](tickets/assets/User-directory-in-osTicket.png)
+
+---
+
+## Ticket Simulations
+
+Each department manager submitted a ticket via the osTicket client portal requesting accounts for their new hires. All tickets were assigned to and resolved by Ademola Durodola.
+
+---
+
+### T003-A — Finance
+
+**Submitted by:** Katherine Stetson (`katherine.stetson@lab.local`)
+**New hires:** Lauren Esbrand, Eve Saunders
+**Script:** `New-FinanceUser.ps1`
+
+Katherine submitted Ticket #408626 via the osTicket client portal requesting domain accounts for two incoming Finance team members.
+
+![Ticket #408626 — Katherine's submission and ticket details](tickets/assets/FinanceRequest-ticket-pipeline.png)
+
+**Script run — Lauren Esbrand:**
+
+```powershell
+.\New-FinanceUser.ps1 -FirstName "Lauren" -LastName "Esbrand" -JobTitle "Finance Analyst"
+```
+
+![New-FinanceUser.ps1 — lauren.esbrand created successfully](tickets/assets/Lauren-in-finance-created.png)
+
+**Script run — Eve Saunders:**
+
+```powershell
+.\New-FinanceUser.ps1 -FirstName "Eve" -LastName "Saunders" -JobTitle "Accounts Coordinator"
+```
+
+![New-FinanceUser.ps1 — eve.saunders created successfully](tickets/assets/Eve-in-finance-created.png)
+
+**ADUC verification — all Finance users confirmed:**
+
+![ADUC — Finance OU showing all users and Finance-Users security group](tickets/assets/Lauren-and-Eve-in-finance-createdADGUI.png)
+
+**WS-01 login validation:**
+
+Both users logged into WS-01 as domain users for the first time. The domain policy triggered an immediate password change prompt on first sign-in, confirming the `ChangePasswordAtLogon` flag was set correctly by the script.
+
+![WS-01 — Lauren Esbrand password change prompt on first login](tickets/assets/Lauren-in-finance-password-creationprompt-upon-first-log-in-attempt.png)
+![WS-01 — Lauren Esbrand successfully logged in](tickets/assets/Lauren-in-finance-successfully-logged-in.png)
+![WS-01 — Eve Saunders password change prompt on first login](tickets/assets/Eve-in-finance-password-creationprompt-upon-first-log-in-attempt.png)
+![WS-01 — Eve Saunders successfully logged in](tickets/assets/Eve-in-finance-successfully-logged-in.png)
+
+**Ticket thread and closure:**
+
+After validating both logins the ticket was updated with resolution notes. Katherine confirmed both users were able to access their accounts with no issues. Ticket closed by Ademola Durodola.
+
+![Ticket thread — agent notes and resolution](tickets/assets/FinanceRequest-ticket-pipeline2.png)
+![Ticket closed — Katherine confirms both users logged in successfully](tickets/assets/FinanceRequest-ticket-pipeline3.png)
+
+---
+
+### T003-B — HR
+
+*In progress — documentation to follow.*
+
+---
+
+### T003-C — IT
+
+*Pending.*
+
+---
+
+### T003-D — Sales
+
+*Pending.*
 
 ---
 
@@ -145,23 +270,29 @@ Each department manager will submit a separate osTicket request for their new em
 **Technical**
 - Organisational Unit provisioning via PowerShell (`New-OUStructure.ps1`)
 - Bulk AD user creation via scripted automation (`New-DeptLeaders.ps1`)
+- Security group creation and user assignment via PowerShell (`New-SecurityGroups.ps1`)
+- Department-locked user onboarding scripts (`New-FinanceUser.ps1`, `New-HRUser.ps1`, `New-ITUser.ps1`, `New-SalesUser.ps1`)
+- Least privilege access model — permissions via group membership, never direct assignment
 - Domain password policy enforcement and troubleshooting
-- Department-based OU placement for Group Policy application
+- First logon password change enforcement via `ChangePasswordAtLogon` flag
 
 **IT Support Workflow**
-- Environment setup completed before ticket simulation — proactive sysadmin thinking
+- Manager submits ticket on behalf of new hire — new employees have no existing system access to self-serve
+- Full ticket lifecycle documented — submission, agent notes, resolution, manager confirmation, closure
 - Error encountered, diagnosed, and resolved (password complexity) — documented transparently
-- Bulk password remediation via inline PowerShell — efficient, repeatable
 
 **Security Practices**
-- Temporary passwords meet domain complexity and length requirements
+- Temporary passwords meet domain complexity and length requirements (14 character minimum)
 - All accounts set to force password change at first logon
-- Password never communicated via ticket
+- No cross-department share access by default
+- IT helpdesk staff granted delegated AD control without Domain Admin rights
 
 ---
 
 ## Notes
 
-- `New-OUStructure.ps1` must always run before `New-DeptLeaders.ps1` or any user creation script
-- Domain password policy: 14 character minimum, complexity enabled, lockout threshold 3 attempts
+- `New-OUStructure.ps1` must run before any user creation script
+- `New-SecurityGroups.ps1` must run before department onboarding scripts
+- Domain password policy: 14 character minimum, complexity enabled, lockout threshold 3 attempts, 30 minute duration
 - Temp password used across all scripts: `TempPassword123!`
+- All scripts saved to `C:\Scripts\` on DC-01 and run using `.\scriptname.ps1`
