@@ -190,7 +190,8 @@ With the OU structure and manager accounts in place, all department security gro
 
 All six groups created successfully. Zero skipped, zero failed. Existing users `katherine.stetson`, `jasmine.rodgers`, and `paul.atreides` were automatically added to their respective groups by the script.
 
-![New-SecurityGroups.ps1 — 6 groups created, 0 failed](tickets/assets/Securitygroupsetupcompleted.png)
+![New-SecurityGroups.ps1 — 6 groups created, 0 failed]  <img width="852" height="449" alt="image" src="https://github.com/user-attachments/assets/aeb6f689-ed4a-4e3c-868f-5d9247871f24" />
+
 
 ---
 
@@ -205,7 +206,8 @@ Each department manager was registered as an end user in osTicket so they could 
 | Paul Atreides | paul.atreides@lab.local | End User |
 | Anakin Skywalker | anakin.skywalker@lab.local | End User |
 
-![osTicket User Directory — all four managers registered](tickets/assets/User-directory-in-osTicket.png)
+![osTicket User Directory — all four managers registered] <img width="987" height="300" alt="image" src="https://github.com/user-attachments/assets/ddca31bf-3330-4946-872b-4b8ab11029e6" />
+
 
 ---
 
@@ -223,7 +225,7 @@ Each department manager submitted a ticket via the osTicket client portal reques
 
 Katherine submitted Ticket #408626 via the osTicket client portal requesting domain accounts for two incoming Finance team members.
 
-![Ticket #408626 — Katherine's submission and ticket details](tickets/assets/FinanceRequest-ticket-pipeline.png)
+![Ticket #408626 — Katherine's submission and ticket details] (tickets/assets/FinanceRequest-ticket-pipeline.png)
 
 **Script run — Lauren Esbrand:**
 
