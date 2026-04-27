@@ -117,13 +117,19 @@ With the OU structure in place, department manager accounts were created using `
 
 The first run failed — the initial temp password `TempPass123!` did not meet the domain 14 character minimum. All four accounts returned a password complexity error. The script was corrected to use `TempPassword123!` (16 characters) and rerun successfully.
 
-![New-DeptLeaders.ps1 — first run, script header](tickets/assets/New-Deptleaders-Script-run1.png)
-![New-DeptLeaders.ps1 — first run, loop and logic](tickets/assets/New-Deptleaders-Script-run2.png)
-![New-DeptLeaders.ps1 — first run, OU verification and account creation logic](tickets/assets/New-Deptleaders-Script-run3.png)
-![New-DeptLeaders.ps1 — first run, password error on all four accounts](tickets/assets/New-Deptleaders-Script-run4_PW_error__.png)
-![New-DeptLeaders.ps1 — second run, script header with corrected password](tickets/assets/New-Deptleaders-Script-run5.png)
-![New-DeptLeaders.ps1 — second run, loop and account creation logic](tickets/assets/New-Deptleaders-Script-run6.png)
-![New-DeptLeaders.ps1 — second run, all accounts created successfully](tickets/assets/New-Deptleaders-Script-run7.png)
+![New-DeptLeaders.ps1 — first run, script header] <img width="957" height="446" alt="image" src="https://github.com/user-attachments/assets/9c5bbc10-b1a3-4985-b7e3-8eb1c2ca2004" />
+
+![New-DeptLeaders.ps1 — first run, loop and logic] <img width="952" height="483" alt="image" src="https://github.com/user-attachments/assets/704e9dd5-a91c-4fe7-92a6-7f03372ac3f2" />
+
+![New-DeptLeaders.ps1 — first run, OU verification and account creation logic] <img width="963" height="473" alt="image" src="https://github.com/user-attachments/assets/c71ede17-7209-4d44-8db6-c30f8ceccb27" />
+
+![New-DeptLeaders.ps1 — first run, password error on all four accounts] <img width="959" height="479" alt="image" src="https://github.com/user-attachments/assets/045704bd-dc46-4cba-a97d-2e8b61089015" />
+
+![New-DeptLeaders.ps1 — second run, script header with corrected password] <img width="951" height="483" alt="image" src="https://github.com/user-attachments/assets/89342329-62ee-4605-a32a-a5e70ba6a7e0" />
+
+![New-DeptLeaders.ps1 — second run, loop and account creation logic] <img width="954" height="509" alt="image" src="https://github.com/user-attachments/assets/0825d35a-6e3c-4e5d-a1ed-a4cf7b68640b" />
+
+![New-DeptLeaders.ps1 — second run, all accounts created successfully] <img width="932" height="481" alt="image" src="https://github.com/user-attachments/assets/f0bcd94f-4640-4ba9-9adb-da0feaf27a1c" />
 
 After the first run failure, all four accounts were bulk-updated via inline PowerShell to ensure password compliance and force a change at first logon:
 
