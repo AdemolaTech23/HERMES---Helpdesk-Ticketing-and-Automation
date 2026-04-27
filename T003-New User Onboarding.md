@@ -271,10 +271,56 @@ After validating both logins the ticket was updated with resolution notes. Kathe
 
 
 ---
-
+ 
 ### T003-B — HR
+ 
+**Submitted by:** Sandra Mills (`sandra.mills@lab.local`)
+**New hires:** Adrianna Sita, Jenaiah Morris
+**Script:** `New-HRUser.ps1`
+ 
+Sandra submitted Ticket #215790 via the osTicket client portal requesting domain accounts for two incoming HR team members.
+ 
+![Ticket #215790 — Sandra's submission and ticket details] <img width="831" height="633" alt="image" src="https://github.com/user-attachments/assets/458cba0b-d3e9-4ad8-883a-aa547f4e8fb6" />
 
-*In progress — documentation to follow.*
+**Script run — Adrianna Sita:**
+ 
+```powershell
+.\New-HRUser.ps1 -FirstName "Adrianna" -LastName "Sita" -JobTitle "HR Generalist"
+```
+ 
+![New-HRUser.ps1 — adrianna.sita created successfully] <img width="676" height="252" alt="image" src="https://github.com/user-attachments/assets/0afcf042-ee96-43af-ad17-ef7de7291294" />
+
+**Script run — Jenaiah Morris:**
+ 
+```powershell
+.\New-HRUser.ps1 -FirstName "Jenaiah" -LastName "Morris" -JobTitle "Recruitment Coordinator"
+```
+ 
+![New-HRUser.ps1 — jenaiah.morris created successfully]  <img width="667" height="318" alt="image" src="https://github.com/user-attachments/assets/846effcf-9990-41f2-80bc-4900a9cedd30" />
+
+ 
+**ADUC verification — all HR users confirmed:**
+ 
+![ADUC — HR OU showing all users and HR-Users security group] <img width="655" height="231" alt="image" src="https://github.com/user-attachments/assets/9d10a34c-99a7-4345-bb0f-92c9720fc3cc" />
+
+ 
+**WS-01 login validation:**
+ 
+Both users logged into WS-01 successfully. Adrianna Sita's login was additionally verified via `whoami` in Command Prompt, confirming the domain context as `lab\adrianna.sita`.
+ 
+![WS-01 — Adrianna Sita welcome screen] <img width="785" height="430" alt="image" src="https://github.com/user-attachments/assets/f9ee4368-2e4b-46a2-b881-962e53cfb093" />
+
+![WS-01 — Adrianna Sita whoami confirmation] <img width="390" height="118" alt="image" src="https://github.com/user-attachments/assets/4de6b998-a083-477a-a3fe-192d559fb4bf" />
+
+![WS-01 — Jenaiah Morris welcome screen] <img width="747" height="354" alt="image" src="https://github.com/user-attachments/assets/f4dd63c9-dfe9-4d0d-9135-46576db0db87" />
+
+**Ticket thread and closure:**
+ 
+After validating both logins the ticket was updated with resolution notes. Sandra confirmed both users logged in successfully with no issues. Ticket closed by Ademola Durodola.
+ 
+![Ticket thread — agent notes, accounts created, login validation] <img width="978" height="905" alt="image" src="https://github.com/user-attachments/assets/ecf21648-3ec1-457c-8269-47ee1befd8da" />
+
+![Ticket closed — Sandra confirms both users logged in successfully] <img width="973" height="734" alt="image" src="https://github.com/user-attachments/assets/3053f4fc-30b5-4806-8d6d-ebc029b13a01" />
 
 ---
 
