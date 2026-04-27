@@ -225,7 +225,7 @@ Each department manager submitted a ticket via the osTicket client portal reques
 
 Katherine submitted Ticket #408626 via the osTicket client portal requesting domain accounts for two incoming Finance team members.
 
-![Ticket #408626 — Katherine's submission and ticket details] (tickets/assets/FinanceRequest-ticket-pipeline.png)
+![Ticket #408626 — Katherine's submission and ticket details] <img width="957" height="769" alt="image" src="https://github.com/user-attachments/assets/ab00d8eb-f294-4656-a6a8-8029102687cd" />
 
 **Script run — Lauren Esbrand:**
 
@@ -233,7 +233,8 @@ Katherine submitted Ticket #408626 via the osTicket client portal requesting dom
 .\New-FinanceUser.ps1 -FirstName "Lauren" -LastName "Esbrand" -JobTitle "Finance Analyst"
 ```
 
-![New-FinanceUser.ps1 — lauren.esbrand created successfully](tickets/assets/Lauren-in-finance-created.png)
+![New-FinanceUser.ps1 — lauren.esbrand created successfully] <img width="756" height="247" alt="image" src="https://github.com/user-attachments/assets/ad571a6a-bd5f-4141-9839-c978a58ff047" />
+
 
 **Script run — Eve Saunders:**
 
@@ -241,27 +242,33 @@ Katherine submitted Ticket #408626 via the osTicket client portal requesting dom
 .\New-FinanceUser.ps1 -FirstName "Eve" -LastName "Saunders" -JobTitle "Accounts Coordinator"
 ```
 
-![New-FinanceUser.ps1 — eve.saunders created successfully](tickets/assets/Eve-in-finance-created.png)
+![New-FinanceUser.ps1 — eve.saunders created successfully] <img width="756" height="246" alt="image" src="https://github.com/user-attachments/assets/1fa67e3a-dcc0-4667-9372-1bb4d844d74d" />
 
 **ADUC verification — all Finance users confirmed:**
 
-![ADUC — Finance OU showing all users and Finance-Users security group](tickets/assets/Lauren-and-Eve-in-finance-createdADGUI.png)
+![ADUC — Finance OU showing all users and Finance-Users security group] <img width="639" height="288" alt="image" src="https://github.com/user-attachments/assets/bb7de941-471a-48d7-901b-c9615c933400" />
 
 **WS-01 login validation:**
 
 Both users logged into WS-01 as domain users for the first time. The domain policy triggered an immediate password change prompt on first sign-in, confirming the `ChangePasswordAtLogon` flag was set correctly by the script.
 
-![WS-01 — Lauren Esbrand password change prompt on first login](tickets/assets/Lauren-in-finance-password-creationprompt-upon-first-log-in-attempt.png)
-![WS-01 — Lauren Esbrand successfully logged in](tickets/assets/Lauren-in-finance-successfully-logged-in.png)
-![WS-01 — Eve Saunders password change prompt on first login](tickets/assets/Eve-in-finance-password-creationprompt-upon-first-log-in-attempt.png)
-![WS-01 — Eve Saunders successfully logged in](tickets/assets/Eve-in-finance-successfully-logged-in.png)
+![WS-01 — Lauren Esbrand password change prompt on first login] <img width="839" height="464" alt="image" src="https://github.com/user-attachments/assets/a24bd4dc-e077-49fb-ac3e-45ce3ca6bca4" />
+
+![WS-01 — Lauren Esbrand successfully logged in] <img width="993" height="360" alt="image" src="https://github.com/user-attachments/assets/ba4dc8c7-39a8-4f56-ae5e-1689048accb7" />
+
+![WS-01 — Eve Saunders password change prompt on first login] <img width="598" height="442" alt="image" src="https://github.com/user-attachments/assets/be03f868-da67-49d6-9f6f-62e5f7e28494" />
+
+![WS-01 — Eve Saunders successfully logged in] <img width="980" height="295" alt="image" src="https://github.com/user-attachments/assets/7e92b8f2-08de-4729-b99a-160ae0d0aacc" />
+
 
 **Ticket thread and closure:**
 
 After validating both logins the ticket was updated with resolution notes. Katherine confirmed both users were able to access their accounts with no issues. Ticket closed by Ademola Durodola.
 
-![Ticket thread — agent notes and resolution](tickets/assets/FinanceRequest-ticket-pipeline2.png)
-![Ticket closed — Katherine confirms both users logged in successfully](tickets/assets/FinanceRequest-ticket-pipeline3.png)
+![Ticket thread — agent notes and resolution] <img width="965" height="683" alt="image" src="https://github.com/user-attachments/assets/d56a3362-cb0d-4be6-94fa-5b482ec6b1a7" />
+
+![Ticket closed — Katherine confirms both users logged in successfully] <img width="999" height="613" alt="image" src="https://github.com/user-attachments/assets/8f3467a8-6fe7-4b6f-999e-4eafe1b34619" />
+
 
 ---
 
