@@ -381,10 +381,71 @@ After account creation and AD verification the ticket was updated with resolutio
 ![Ticket closed — Paul confirms all three users logged in successfully] <img width="960" height="545" alt="image" src="https://github.com/user-attachments/assets/a95b2988-60dc-48ed-9302-4015f82ef722" />
 
  
+ 
 ---
+ 
 ### T003-D — Sales
+ 
+**Submitted by:** Anakin Skywalker (`anakin.skywalker@lab.local`)
+**New hires:** Khoran Gomez, Camryn Tapaia, Laren Johnson, Catherine Krol
+**Script:** `New-SalesUser.ps1`
+ 
+Anakin submitted Ticket #365628 via the osTicket client portal requesting domain accounts for four incoming Sales team members.
+ 
+![Ticket #365628 — Anakin's submission and ticket details] <img width="809" height="550" alt="image" src="https://github.com/user-attachments/assets/219c358c-c1d0-4b91-9d1d-c43b33e1ade4" />
 
-*Pending.*
+ 
+**Script run — Khoran Gomez:**
+ 
+```powershell
+.\New-SalesUser.ps1 -FirstName "Khoran" -LastName "Gomez" -JobTitle "Sales Associate"
+```
+ 
+![New-SalesUser.ps1 — khoran.gomez created successfully] <img width="733" height="230" alt="image" src="https://github.com/user-attachments/assets/cc902a3d-2b52-4422-9ec8-07a599fbcf68" />
+
+ 
+**Script run — Camryn Tapaia:**
+ 
+```powershell
+.\New-SalesUser.ps1 -FirstName "Camryn" -LastName "Tapaia" -JobTitle "Sales Coordinator"
+```
+ 
+![New-SalesUser.ps1 — camryn.tapaia created successfully] <img width="680" height="217" alt="image" src="https://github.com/user-attachments/assets/995dd9dd-910a-49bc-a19c-724afbe9d207" />
+
+ 
+**Script run — Laren Johnson:**
+ 
+```powershell
+.\New-SalesUser.ps1 -FirstName "Laren" -LastName "Johnson" -JobTitle "Account Executive"
+```
+ 
+![New-SalesUser.ps1 — laren.johnson created successfully] <img width="694" height="219" alt="image" src="https://github.com/user-attachments/assets/39c4b04e-489d-4e8b-8c5b-c2b4baada0b5" />
+
+ 
+**Script run — Catherine Krol:**
+ 
+```powershell
+.\New-SalesUser.ps1 -FirstName "Catherine" -LastName "Krol" -JobTitle "Sales Analyst"
+```
+ 
+![New-SalesUser.ps1 — catherine.krol created successfully] <img width="714" height="214" alt="image" src="https://github.com/user-attachments/assets/0e3393f1-d2ee-48d1-bd1e-114cf04d61db" />
+
+ 
+**ADUC verification — all Sales users confirmed:**
+ 
+![ADUC — Sales OU showing all users and Sales-Users security group] <img width="710" height="367" alt="image" src="https://github.com/user-attachments/assets/025cd41b-4d3a-41e5-8adb-7539bde718e6" />
+
+**WS-01 login validation:**
+ 
+Login screenshots were omitted — the pattern was established during Finance and HR onboarding. All four accounts were confirmed active in ADUC with correct OU placement and group membership.
+ 
+**Ticket thread and closure:**
+ 
+After account creation and AD verification the ticket was updated with resolution notes. Anakin confirmed all four users were able to log in on their first day with no issues. Ticket closed by Ademola Durodola.
+ 
+![Ticket thread — agent notes, all four accounts created and verified] <img width="960" height="817" alt="image" src="https://github.com/user-attachments/assets/78f07e2d-8927-4069-b057-c624c4a2f184" />
+
+![Ticket closed — Anakin confirms all Sales users logged in successfully] <img width="962" height="609" alt="image" src="https://github.com/user-attachments/assets/f32561b6-2109-4c0c-8513-61de9822f780" />
 
 ---
 
