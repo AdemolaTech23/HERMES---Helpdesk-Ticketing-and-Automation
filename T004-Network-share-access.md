@@ -23,7 +23,8 @@ Paul Atreides submitted the following via the osTicket client portal:
 
 > "Team, Michael is unable to access the IT network drive (`\\DC-01\IT`). He's receiving a 'network path not found' error. Can you take a look and get this resolved? – Paul"
 
-![Ticket pipeline — submission and initial notes](assets/TicketpipelineNetdrive.png)
+![Ticket pipeline — submission and initial notes] <img width="1012" height="873" alt="image" src="https://github.com/user-attachments/assets/385520de-8e5d-44e9-bfb5-54b44b720d0c" />
+
 
 ---
 
@@ -47,13 +48,15 @@ The lockout threshold for the domain is set to 3 failed attempts with a 30-minut
 
 Further investigation in ADUC revealed that paul.atreides was also disabled — a separate condition from the lockout. This is a lab provisioning artifact: the account was not enabled at creation time.
 
-![Paul Atreides — account disabled error](assets/Paul_account_disabled.png)
+![Paul Atreides — account disabled error] <img width="808" height="464" alt="image" src="https://github.com/user-attachments/assets/0aaf3166-4d31-4e2d-8773-4a9eb825fe48" />
+
 
 **Resolution — Re-enable Account**
 
 The account was re-enabled via ADUC: right-click `paul.atreides` → **Enable Account**.
 
-![ADUC — Enable Account for paul.atreides](assets/Paul_account_enabled.png)
+![ADUC — Enable Account for paul.atreides] <img width="809" height="465" alt="image" src="https://github.com/user-attachments/assets/85892d36-2d1d-45f5-93bd-76599f465a9d" />
+
 
 **Resolution — Unlock Account**
 
@@ -65,13 +68,15 @@ With the account re-enabled, `Unlock-ADAccount.ps1` was run against paul.atreide
 
 Output confirmed LockedOut: True, 3 bad logons, and returned SUCCESS on unlock.
 
-![Unlock-ADAccount.ps1 output — paul.atreides](assets/Unlocked_paul_atreides_account.png)
+![Unlock-ADAccount.ps1 output — paul.atreides] <img width="873" height="441" alt="image" src="https://github.com/user-attachments/assets/2a53c63a-765a-48d4-a749-af2cfa32d546" />
+
 
 **Verification**
 
 Paul logged into WS-01 successfully. `whoami` confirmed `lab\paul.atreides`.
 
-![whoami confirming lab\paul.atreides](assets/Paul_logged_in.png)
+![whoami confirming lab\paul.atreides] <img width="349" height="113" alt="image" src="https://github.com/user-attachments/assets/48a3625f-6687-4c33-b69c-b1a802a0c122" />
+
 
 With Paul's account restored, share troubleshooting could proceed.
 
@@ -98,7 +103,8 @@ All four department shares were confirmed active and pointing to the correct pat
 | IT | C:\Shares\IT |
 | Sales | C:\Shares\Sales |
 
-![Get-SmbShare output on DC-01](assets/Share_existence_verification.png)
+![Get-SmbShare output on DC-01] <img width="696" height="288" alt="image" src="https://github.com/user-attachments/assets/06662249-7f15-41b2-93ff-ffb740d62ce4" />
+
 
 The `New-DeptShares.ps1` script run was also reviewed to confirm NTFS and SMB permissions were applied correctly at creation:
 
@@ -106,7 +112,8 @@ The `New-DeptShares.ps1` script run was also reviewed to confirm NTFS and SMB pe
 - SMB: IT-Users (Change), Helpdesk-Admins (Read), Domain Admins (Full)
 - Everyone removed from all shares
 
-![New-DeptShares.ps1 run output](assets/New-DeptShare-Script-run1.png)
+![New-DeptShares.ps1 run output] <img width="822" height="378" alt="image" src="https://github.com/user-attachments/assets/22cd7319-bece-4105-b5e2-7562d26fd7e2" />
+
 
 Server-side configuration confirmed clean. Troubleshooting moved to WS-01.
 
@@ -160,11 +167,12 @@ net view \\192.168.0.10
 
 All four shares listed successfully: Finance, HR, IT, Sales (plus NETLOGON and SYSVOL).
 
-![net view output — all shares visible](assets/list_al_directories.png)
+![net view output — all shares visible] <img width="596" height="264" alt="image" src="https://github.com/user-attachments/assets/4cb7eb59-ff92-4f28-b404-846e4e70869d" />
+
 
 The shares are visible and the SMB session can be established by IP — but UNC path access is still failing.
 
-![Full troubleshooting output — UNC failures and ping results](assets/Path_cannot_be_found.png)
+![Full troubleshooting output — UNC failures and ping results] <img width="798" height="484" alt="image" src="https://github.com/user-attachments/assets/0544b561-ce70-49c8-ba99-7d9302d4ef40" />
 
 **Firewall and Service Check (on DC-01)**
 
@@ -175,7 +183,8 @@ Get-NetFirewallRule -Displaygroup "File and Printer Sharing" | Select-Object Dis
 
 LanmanServer service: **Running**. All File and Printer Sharing firewall rules: **Enabled**.
 
-![LanmanServer service and firewall rules](assets/Firewall_rule_and_service_check.png)
+![LanmanServer service and firewall rules] <img width="943" height="511" alt="image" src="https://github.com/user-attachments/assets/1a814332-03e0-4848-8d9d-0445e05dc824" />
+
 
 Server-side firewall and service configuration confirmed clean.
 
@@ -199,7 +208,8 @@ net use Z: \\192.168.0.10\IT
 
 Drive mapped successfully. Z: drive appeared in This PC as `IT (\\192.168.0.10) (Z:)` with full capacity visible.
 
-![Z drive mapped and accessible in This PC](assets/Z_drive_now_available.png)
+![Z drive mapped and accessible in This PC] <img width="782" height="528" alt="image" src="https://github.com/user-attachments/assets/57537441-9568-4b61-9c5f-bf0efcdd7e2a" />
+
 
 Michael Cabrera confirmed access to the IT network share is restored.
 
@@ -215,7 +225,7 @@ The technician posted a user-facing reply to Paul Atreides:
 
 Final internal note documented the resolution and underlying cause. Ticket closed by Ademola Durodola.
 
-![Ticket resolution notes and close](assets/TicketpipelineNetdrive2.png)
+![Ticket resolution notes and close] <img width="1019" height="781" alt="image" src="https://github.com/user-attachments/assets/3d1e336e-02f8-4fae-b512-a941b35df9cb" />
 
 ---
 
