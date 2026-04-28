@@ -39,7 +39,7 @@ Paul attempted to log into WS-01 and received the following error:
 
 > "The referenced account is currently locked out and may not be logged on to."
 
-![Paul Atreides — account locked out error](assets/Paul_locked-out.png)
+![Paul Atreides — account locked out error]  
 
 The lockout threshold for the domain is set to 3 failed attempts with a 30-minute lockout duration (documented in T002). Paul had hit the threshold.
 
