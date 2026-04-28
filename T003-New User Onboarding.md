@@ -7,7 +7,7 @@
 | Date | 2026-04-25 |
 | Submitted via | osTicket (web portal) |
 | Priority | Normal |
-| Status | In Progress |
+| Status | Closed |
 | Assigned To | Ademola Durodola |
 | Environment | DC-01 (Windows Server 2022) · WS-01 (Windows 10 Pro) · INFRA-01 (osTicket) |
 
