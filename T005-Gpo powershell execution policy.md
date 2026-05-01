@@ -39,7 +39,8 @@ In **Group Policy Management Console (GPMC)** on DC-01:
 
 Name: `Workstation-PS-ExecutionPolicy`
 
-![New GPO named Workstation-PS-ExecutionPolicy](assets/Group-polciy-name.png)
+![New GPO named Workstation-PS-ExecutionPolicy] <img width="730" height="407" alt="image" src="https://github.com/user-attachments/assets/a7066a11-22bd-47ac-b72d-4b92f6339ba3" />
+
 
 ---
 
@@ -61,7 +62,8 @@ Settings applied:
 - **State:** Enabled
 - **Execution Policy:** Allow only signed scripts
 
-![Turn on Script Execution — Enabled, Allow only signed scripts](assets/Powershell-script-option.png)
+![Turn on Script Execution — Enabled, Allow only signed scripts] <img width="694" height="617" alt="image" src="https://github.com/user-attachments/assets/1dd7b824-bc97-4b17-84c1-306570e81c4f" />
+
 
 **Why Computer Configuration and not User Configuration?**
 
@@ -75,11 +77,12 @@ The GPO was linked to the **Departments** OU so it applies to all workstations w
 
 In GPMC: right-click **Departments** → **Link an Existing GPO** → select `Workstation-PS-ExecutionPolicy`
 
-![Select GPO dialog — Workstation-PS-ExecutionPolicy selected](assets/Linked-group-policy.png)
+![Select GPO dialog — Workstation-PS-ExecutionPolicy selected] <img width="776" height="581" alt="image" src="https://github.com/user-attachments/assets/d18b7d62-aec1-4747-9736-25ce52f2af6a" />
+
 
 GPO confirmed linked with Link Enabled: **Yes** and GPO Status: **Enabled**.
 
-![GPO linked to Departments OU — confirmed enabled](assets/GPO-confirmed.png)
+![GPO linked to Departments OU — confirmed enabled] <img width="766" height="385" alt="image" src="https://github.com/user-attachments/assets/beeb6b2f-7429-42b0-8ee7-d3cc127b4fa9" />
 
 ---
 
@@ -90,7 +93,8 @@ WS-01's computer object is located at:
 lab.local → IT → Computers
 ```
 
-![WS-01 computer object in IT → Computers OU](assets/Computer_location_in_AD.png)
+![WS-01 computer object in IT → Computers OU] <img width="767" height="461" alt="image" src="https://github.com/user-attachments/assets/5e90397f-82eb-4759-8056-e60f647371fb" />
+
 
 The **IT** OU sits as a child of **lab.local**, which inherits Group Policy from parent OUs in the domain. The Departments OU link reaches WS-01 through the domain's policy inheritance chain — confirmed by `gpresult /r` showing the policy applied with the source listed as `DC01.lab.local`.
 
@@ -112,7 +116,7 @@ gpupdate /force
 
 Both Computer Policy and User Policy updated successfully.
 
-![gpupdate /force — Computer and User Policy completed successfully](assets/group-policy-update-command-ran.png)
+![gpupdate /force — Computer and User Policy completed successfully] <img width="405" height="89" alt="image" src="https://github.com/user-attachments/assets/c1d6bd9f-350b-4e5a-bf2c-1da55a780f37" />
 
 > **Note:** Computer-side GPO changes sometimes require a full machine restart to apply. If `gpresult` does not show the policy after `gpupdate /force`, restart the workstation and re-verify.
 
@@ -126,7 +130,8 @@ gpresult /r
 
 Under **Computer Settings → Applied Group Policy Objects**, `Workstation-PS-ExecutionPolicy` is confirmed present alongside the Default Domain Policy.
 
-![gpresult /r — Workstation-PS-ExecutionPolicy applied on WS-01](assets/GP_result_on_WS01.png)
+![gpresult /r — Workstation-PS-ExecutionPolicy applied on WS-01] <img width="599" height="211" alt="image" src="https://github.com/user-attachments/assets/ca12c02b-28b6-45a1-a4e6-446c36aa4335" />
+
 
 The policy source is listed as `DC01.lab.local`, confirming it was delivered from the domain controller and is not a local setting.
 
@@ -150,7 +155,8 @@ CategoryInfo: SecurityError: [] PSSecurityException
 FullyQualifiedErrorId: UnauthorizedAccess
 ```
 
-![Unsigned script blocked — PSSecurityException UnauthorizedAccess](assets/script_not_digitally_signed_message_.png)
+![Unsigned script blocked — PSSecurityException UnauthorizedAccess] <img width="791" height="164" alt="image" src="https://github.com/user-attachments/assets/f664c98e-d58a-4baf-ab27-eca4a71a0bb5" />
+
 
 The policy is enforcing correctly. An unsigned script that would have executed without issue under the default execution policy is now blocked at the machine level by Group Policy.
 
