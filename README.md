@@ -74,7 +74,7 @@ No permissions assigned directly to users — all access flows through group mem
 
 ## Tickets
 
-### [T001 — Password Reset](tickets/assets/T001-password-reset.md)
+### [T001 — Password Reset](T001-password-reset.md)
 **Ticket #530759 · Priority: Normal · Closed**
 
 - User unable to log into WS-01; ticket submitted on her behalf from DC-01 (no workstation access)
