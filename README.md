@@ -84,7 +84,7 @@ No permissions assigned directly to users — all access flows through group mem
 
 ---
 
-### [T002 — Account Lockout](tickets/T002-account-lockout.md)
+### [T002 — Account Lockout](T002-account-lockout.md)
 **Ticket #170269 · Priority: Normal · Closed**
 
 - User hit the 3-attempt lockout threshold and submitted the ticket herself from WS-01
@@ -97,7 +97,7 @@ No permissions assigned directly to users — all access flows through group mem
 
 ---
 
-### [T003 — New User Onboarding](tickets/T003-New_User_Onboarding.md)
+### [T003 — New User Onboarding](T003-New%20User%20Onboarding.md)
 **4 tickets · 15 users onboarded across Finance, HR, IT, Sales**
 
 - Four department managers submitted separate onboarding requests via osTicket
@@ -117,7 +117,7 @@ No permissions assigned directly to users — all access flows through group mem
 
 ---
 
-### [T004 — Unable to Access IT Network Share](tickets/T004-Network-share-access.md)
+### [T004 — Unable to Access IT Network Share](T004-Network-share-access.md)
 **Ticket #779507 · Priority: High · Closed · Open-to-close: 4 minutes**
 
 - michael.cabrera unable to access `\\DC-01\IT` from WS-01 — "network path not found"
@@ -137,7 +137,7 @@ No permissions assigned directly to users — all access flows through group mem
 
 ---
 
-### [T005 — PowerShell Execution Policy Enforcement via GPO](tickets/T005-Gpo_powershell_execution_policy.md)
+### [T005 — PowerShell Execution Policy Enforcement via GPO](T005-Gpo%20powershell%20execution%20policy.md)
 **Security Control Implementation · Scope: All domain workstations**
 
 - GPO (`Workstation-PS-ExecutionPolicy`) created and linked to Departments OU
